@@ -1,0 +1,88 @@
+﻿@page "/{id:int?}"
+@model Proiect_Medii_de_Programare_Gradinaru_Alexandra.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Produse";
+}
+
+<h1>Produse</h1>
+
+<p>
+    <a asp-page="Create">Adauga Produs</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ManufactureDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].LotNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductSkinTypes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProductD.Products) {
+    string selectedRow = "";
+    if (item.ID == Model.ProductID)
+    {
+        selectedRow = "table-success";
+    }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufactureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LotNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @{ 
+                    foreach (var skinType in item.ProductSkinTypes)
+                    {
+                        @skinType.SkinType.ID @: @skinType.SkinType.SkinTypeName <br/>
+                    }
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

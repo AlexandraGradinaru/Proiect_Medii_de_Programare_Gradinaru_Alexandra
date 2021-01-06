@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "Proiect_Medii_de_Programare_Gradinaru_AlexandraContext"
+    }
+  }
+}
